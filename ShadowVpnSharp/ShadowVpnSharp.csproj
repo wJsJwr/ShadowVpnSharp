@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8CF9FFC7-0F09-4A4E-BF27-1D50BE1D9A3B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShadowVpnSharp</RootNamespace>
+    <AssemblyName>ShadowVpnSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PrimaryVersionType>AssemblyVersionAttribute</PrimaryVersionType>
+    <AssemblyInfoFilePath>Properties\AssemblyInfo.cs</AssemblyInfoFilePath>
+    <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>True</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
+    <AssemblyVersionSettings>None.IncrementOnDemandWithReset.Increment.DateStamp</AssemblyVersionSettings>
+    <AssemblyFileVersionSettings>None.IncrementOnDemandWithReset.Increment.DateStamp</AssemblyFileVersionSettings>
+    <AssemblyVersion>1.0.276.17162</AssemblyVersion>
+    <AssemblyInfoVersionSettings>None.IncrementOnDemandWithReset.Increment.DateStamp</AssemblyInfoVersionSettings>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <LangVersion>default</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="fastjson, Version=2.1.0.0, Culture=neutral, PublicKeyToken=6b75a806b86095cd, processorArchitecture=MSIL">
+      <HintPath>..\packages\fastJSON.2.1.23\lib\net40\fastjson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zxing, Version=0.15.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.15.0\lib\net461\zxing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.15.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.15.0\lib\net461\zxing.presentation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\Profile.cs" />
+    <Compile Include="Helper\ComponentPath.cs" />
+    <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Helper\Counter.cs" />
+    <Compile Include="Helper\Diagnostic.cs" />
+    <Compile Include="Update\Updater.cs" />
+    <Compile Include="Update\Checker.cs" />
+    <Compile Include="Update\Downloader.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Update\ReleaseInfo.cs" />
+    <Compile Include="View\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\CaptureQrCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\CaptureQrCode.Designer.cs">
+      <DependentUpon>CaptureQrCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DiagnosticProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DiagnosticProgress.Designer.cs">
+      <DependentUpon>DiagnosticProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Device\InterfaceInformation.cs" />
+    <Compile Include="Helper\Os.cs" />
+    <Compile Include="View\EntryWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EntryWindow.Designer.cs">
+      <DependentUpon>EntryWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\FromUri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FromUri.Designer.cs">
+      <DependentUpon>FromUri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\GenerateQrCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\GenerateQrCode.Designer.cs">
+      <DependentUpon>GenerateQrCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\GenerateUri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\GenerateUri.Designer.cs">
+      <DependentUpon>GenerateUri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProfileManageWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ProfileManageWindow.Designer.cs">
+      <DependentUpon>ProfileManageWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\TapChecker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TapChecker.Designer.cs">
+      <DependentUpon>TapChecker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\IPNetHelper.cs" />
+    <Compile Include="Helper\Logger.cs" />
+    <Compile Include="Device\NetIntf.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Route\VpnRoute.cs" />
+    <Compile Include="Device\TapDeviceFunc.cs" />
+    <Compile Include="Helper\v4addr.cs" />
+    <Compile Include="Core\VPNDaemon.cs" />
+    <Compile Include="View\UpdateDownload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\UpdateDownload.Designer.cs">
+      <DependentUpon>UpdateDownload.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="View\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\CaptureQrCode.resx">
+      <DependentUpon>CaptureQrCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DiagnosticProgress.resx">
+      <DependentUpon>DiagnosticProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EntryWindow.resx">
+      <DependentUpon>EntryWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FromUri.resx">
+      <DependentUpon>FromUri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\GenerateQrCode.resx">
+      <DependentUpon>GenerateQrCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\GenerateUri.resx">
+      <DependentUpon>GenerateUri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ProfileManageWindow.resx">
+      <DependentUpon>ProfileManageWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TapChecker.resx">
+      <DependentUpon>TapChecker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="View\UpdateDownload.resx">
+      <DependentUpon>UpdateDownload.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.2 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ico.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
