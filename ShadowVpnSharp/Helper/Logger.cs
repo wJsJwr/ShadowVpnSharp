@@ -4,10 +4,21 @@ using System.Text;
 
 namespace ShadowVpnSharp.Helper {
     static class Logger {
-        public static void Init() {
-            if (!File.Exists(ComponentPath.LogFilePath) && !Directory.Exists(Path.GetDirectoryName(ComponentPath.LogFilePath))) {
-                Directory.CreateDirectory(Path.GetDirectoryName(ComponentPath.LogFilePath));
+        private static bool _isUpdate;
+
+        public static string Logfile { get; private set; }
+
+        public static void Init(bool isUpdate = false) {
+            if (isUpdate) {
+                _isUpdate = isUpdate;
+                Logfile = Path.GetTempFileName();
+            } else {
+                if (!File.Exists(ComponentPath.LogFilePath) && !Directory.Exists(Path.GetDirectoryName(ComponentPath.LogFilePath))) {
+                    Directory.CreateDirectory(Path.GetDirectoryName(ComponentPath.LogFilePath));
+                }
+                Logfile = ComponentPath.LogFilePath;
             }
+
         }
         public static void Close() {}
 
@@ -26,7 +37,7 @@ namespace ShadowVpnSharp.Helper {
                 }
             }
             try {
-                File.AppendAllText(ComponentPath.LogFilePath, sb.ToString());
+                File.AppendAllText(Logfile, sb.ToString());
             } catch {
                 // drop it;
             }

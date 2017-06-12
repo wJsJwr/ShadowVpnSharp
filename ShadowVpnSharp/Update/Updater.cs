@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
+using ShadowVpnSharp.Helper;
 
 namespace ShadowVpnSharp.Update {
     class Updater {
@@ -18,11 +19,13 @@ namespace ShadowVpnSharp.Update {
                 string newDir = dir.Replace(source, dest);
                 if (!Directory.Exists(newDir)) {
                     Directory.CreateDirectory(newDir);
+                    Logger.Info($"Create Directory: {newDir}");
                 }
             }
             foreach (var file in Directory.GetFiles(source, "*",SearchOption.AllDirectories)) {
                 string newFile = file.Replace(source, dest);
                 File.Copy(file, newFile, true);
+                Logger.Info($"File Copied: {file} to {newFile}");
             }
         }
 

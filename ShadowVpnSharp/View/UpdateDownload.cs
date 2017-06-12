@@ -15,6 +15,7 @@ namespace ShadowVpnSharp.View {
     public partial class UpdateDownload : Form {
         private ReleaseInfo _info;
         private EntryWindow _caller;
+        private Downloader _downloader;
         public UpdateDownload(EntryWindow caller) {
             _caller = caller;
             InitializeComponent();
@@ -59,11 +60,11 @@ namespace ShadowVpnSharp.View {
             pb.Maximum = 100;
             pb.Minimum = 0;
             pb.Value = 0;
-            Downloader d = new Downloader();
-            d.DownloadFileCompleted += D_DownloadFileCompleted;
-            d.DownloadProgressChanged += D_DownloadProgressChanged;
+            _downloader = new Downloader();
+            _downloader.DownloadFileCompleted += D_DownloadFileCompleted;
+            _downloader.DownloadProgressChanged += D_DownloadProgressChanged;
             try {
-                d.DownloadFileAsync(new Uri(_info.DownloadUrl), _info.FileName);
+                _downloader.DownloadFileAsync(new Uri(_info.DownloadUrl), _info.FileName);
             } catch (Exception e) {
                 MessageBox.Show(this, e.Message + Environment.NewLine + @"请稍后再试。", @"出错啦", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if(File.Exists(_info.FileName)) File.Delete(_info.FileName);
@@ -79,6 +80,12 @@ namespace ShadowVpnSharp.View {
         }
 
         private void D_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e) {
+            if (e.Cancelled) {
+                _downloader.Dispose();
+                if (File.Exists(_info.FileName)) File.Delete(_info.FileName);
+                Close();
+                return;
+            }
             lbStatus.Text = @"正在检查文件";
             pb.Style = ProgressBarStyle.Marquee;
             if (Updater.CheckFile(_info.FileName, _info.Checksum)) {
@@ -94,7 +101,11 @@ namespace ShadowVpnSharp.View {
         }
 
         private void btnCancel_Click(object sender, EventArgs e) {
-            Close();
+            if (_downloader != null && _downloader.IsBusy) {
+                _downloader.CancelAsync();
+            } else {
+                Close();
+            }
         }
     }
 }

@@ -21,7 +21,7 @@
     <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
     <AssemblyVersionSettings>None.IncrementOnDemandWithReset.Increment.DateStamp</AssemblyVersionSettings>
     <AssemblyFileVersionSettings>None.IncrementOnDemandWithReset.Increment.DateStamp</AssemblyFileVersionSettings>
-    <AssemblyVersion>1.1.0.17162</AssemblyVersion>
+    <AssemblyVersion>1.1.2.17163</AssemblyVersion>
     <AssemblyInfoVersionSettings>None.IncrementOnDemandWithReset.Increment.DateStamp</AssemblyInfoVersionSettings>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>

@@ -26,16 +26,17 @@ namespace ShadowVpnSharp {
         /// </summary>
         [STAThread]
         private static void Main(string[] args) {
-            Logger.Init();
+            Logger.Init(args.Length == 1 && args[0] == "-u");
 
             JSON.Parameters.SerializeNullValues = false;
             JSON.Parameters.UseExtensions = false;
 
-
-
-            Application.ApplicationExit += (sender, e) => {
-                Logger.Close();
-            };
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
+            // handle UI exceptions
+            Application.ThreadException += Application_ThreadException;
+            // handle non-UI exceptions
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            Application.ApplicationExit += Application_ApplicationExit;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Os.Init();
@@ -61,7 +62,7 @@ namespace ShadowVpnSharp {
                     TapDeviceFunc.GetSetupLog();
                     hasRun = true;
                 } else if (args[0] == "--test") {
-                    
+
                 } else if (args[0] == "--diagnostic") {
                     Application.Run(new DiagnosticProgress());
                     hasRun = true;
@@ -70,19 +71,19 @@ namespace ShadowVpnSharp {
                     if (args.Length == 2 && args[1].StartsWith("--from")) {
                         Updater.RemoveDir(args[1].Substring(7));
                     } else {
-                        Updater.Updating();
+                        try {
+                            Updater.Updating();
+                        } catch (Exception e) {
+                            Logger.Error(e.Message);
+                            Logger.Debug(e.StackTrace);
+                            MessageBox.Show($@"更新出错：{e.Message}，{Environment.NewLine}日志文件保存在{Logger.Logfile}");
+                        }
                         hasRun = true;
                     }
                 }
             }
             if (!hasRun) {
                 SelfCheck();
-                Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
-                // handle UI exceptions
-                Application.ThreadException += Application_ThreadException;
-                // handle non-UI exceptions
-                AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
-                Application.ApplicationExit += Application_ApplicationExit;
                 Application.Run(new EntryWindow());
             }
         }
@@ -91,6 +92,7 @@ namespace ShadowVpnSharp {
             // detach static event handlers
             Application.ApplicationExit -= Application_ApplicationExit;
             Application.ThreadException -= Application_ThreadException;
+            Logger.Close();
         }
         private static int exited = 0;
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e) {
