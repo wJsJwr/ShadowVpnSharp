@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Windows.Forms;
 using ShadowVpnSharp.Helper;
 
@@ -47,7 +48,7 @@ namespace ShadowVpnSharp.View {
                 using (var sw = new StreamWriter(file)) {
                     sw.WriteLine("===Configuration Information===");
                     try {
-                        sw.WriteLine("SECTION: app.user.conf");
+                        sw.WriteLine("SECTION: user.conf.json");
                         sw.WriteLine(File.Exists(ComponentPath.UserConfigPath)
                             ? File.ReadAllText(ComponentPath.UserConfigPath)
                             : "\t!!!Not Exist!!!");
@@ -59,10 +60,8 @@ namespace ShadowVpnSharp.View {
                     }
 
                     try {
-                        sw.WriteLine("SECTION: vpn.user.conf");
-                        sw.WriteLine(File.Exists(ComponentPath.VpnConfigPath)
-                            ? File.ReadAllText(ComponentPath.VpnConfigPath)
-                            : "\t!!!Not Exist!!!");
+                        sw.WriteLine("SECTION: Application.Version");
+                        sw.WriteLine(Assembly.GetExecutingAssembly().GetName().Version);
                     } catch (Exception exception) {
                         sw.WriteLine(exception);
                     } finally {
@@ -140,7 +139,7 @@ namespace ShadowVpnSharp.View {
 
                     sw.WriteLine("===Ping Test===");
                     const int times = 10;
-                    foreach (var address in new[]{IPAddress.Parse("8.8.8.8"),IPAddress.Parse("114.114.114.114"),IPAddress.Parse("107.191.52.20") }) {
+                    foreach (var address in new[]{IPAddress.Parse("8.8.8.8"),IPAddress.Parse("114.114.114.114") }) {
                         sw.WriteLine($"Begin to ping {address} with {times} packages");
                         for (uint i = 0; i < times; i++) {
                             sw.WriteLine($"\t{Diagnostic.PingIt(address)}");
