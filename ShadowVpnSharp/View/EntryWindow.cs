@@ -107,21 +107,23 @@ namespace ShadowVpnSharp.View {
         }
 
 
+        public void ProfileMenuItem_Click(object sender, string profileName) {
+            var s = sender as ToolStripMenuItem;
+            Program.UserConfig.SetCurrentProfile(s == null ? profileName : s.Text);
+            foreach (var menuItem in profileList) {
+                if (menuItem.Checked && menuItem != s) menuItem.Checked = false;
+                if (menuItem == s) menuItem.Checked = true;
+            }
+            lbCurrentProfileName.Text = Program.UserConfig.CurrentProfileName;
+            bVpnSwitch.Enabled = true;
+        }
+
         private void DisplayConfig() {
             profileList = new List<ToolStripMenuItem>();
             MenuItemChooseProfile.DropDownItems.Clear();
             foreach (var profile in Program.UserConfig.Profiles) {
                 ToolStripMenuItem item = new ToolStripMenuItem(profile.Key);
-                item.Click += (sender, args) => {
-                    var s = sender as ToolStripMenuItem;
-                    Program.UserConfig.SetCurrentProfile(s?.Text);
-                    foreach (var menuItem in profileList) {
-                        if (menuItem.Checked && menuItem != s) menuItem.Checked = false;
-                        if (menuItem == s) menuItem.Checked = true;
-                    }
-                    lbCurrentProfileName.Text = Program.UserConfig.CurrentProfileName;
-                    bVpnSwitch.Enabled = true;
-                };
+                item.Click += (sender, args) => ProfileMenuItem_Click(sender, null);
                 if (profile.Key == Program.UserConfig.CurrentProfileName) item.Checked = true;
                 profileList.Add(item);
                 MenuItemChooseProfile.DropDownItems.Add(item);
@@ -149,6 +151,7 @@ namespace ShadowVpnSharp.View {
                 StatTimer.Start();
                 MenuItemManageProfile.Enabled = false;
                 MenuItemChooseProfile.Enabled = false;
+                MenuItemChooseFastest.Enabled = false;
             }
         }
 
@@ -160,6 +163,7 @@ namespace ShadowVpnSharp.View {
                 lbCurrentProfileName.Show();
                 MenuItemManageProfile.Enabled = true;
                 MenuItemChooseProfile.Enabled = true;
+                MenuItemChooseFastest.Enabled = true;
             }), sender, ea);
         }
 
@@ -289,6 +293,10 @@ namespace ShadowVpnSharp.View {
 
         private void EntryWindow_FormClosing(object sender, FormClosingEventArgs e) {
             daemon?.Kill();
+        }
+
+        private void MenuItemChooseFastest_Click(object sender, EventArgs e) {
+            new ServerAvailabilityTest(this).ShowDialog(this);
         }
     }
 }
