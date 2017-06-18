@@ -38,9 +38,11 @@
             this.MenuItemGenerateUri = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemImportFromUri = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItemChooseFastest = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemSystemTools = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemHardwareCheck = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemResetTapDevice = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.MenuItemHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,8 +51,6 @@
             this.bVpnSwitch = new System.Windows.Forms.Button();
             this.StatTimer = new System.Windows.Forms.Timer(this.components);
             this.PicStat = new System.Windows.Forms.PictureBox();
-            this.MenuItemChooseFastest = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.EntryWindowMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicStat)).BeginInit();
             this.SuspendLayout();
@@ -162,28 +162,40 @@
             this.MenuItemTools.Size = new System.Drawing.Size(44, 21);
             this.MenuItemTools.Text = "工具";
             // 
+            // MenuItemChooseFastest
+            // 
+            this.MenuItemChooseFastest.Name = "MenuItemChooseFastest";
+            this.MenuItemChooseFastest.Size = new System.Drawing.Size(152, 22);
+            this.MenuItemChooseFastest.Text = "选择最优路线";
+            this.MenuItemChooseFastest.Click += new System.EventHandler(this.MenuItemChooseFastest_Click);
+            // 
             // MenuItemSystemTools
             // 
             this.MenuItemSystemTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemHardwareCheck,
             this.MenuItemResetTapDevice});
             this.MenuItemSystemTools.Name = "MenuItemSystemTools";
-            this.MenuItemSystemTools.Size = new System.Drawing.Size(160, 22);
+            this.MenuItemSystemTools.Size = new System.Drawing.Size(152, 22);
             this.MenuItemSystemTools.Text = "系统工具";
             // 
             // MenuItemHardwareCheck
             // 
             this.MenuItemHardwareCheck.Name = "MenuItemHardwareCheck";
-            this.MenuItemHardwareCheck.Size = new System.Drawing.Size(152, 22);
+            this.MenuItemHardwareCheck.Size = new System.Drawing.Size(148, 22);
             this.MenuItemHardwareCheck.Text = "硬件检测";
             this.MenuItemHardwareCheck.Click += new System.EventHandler(this.MenuItemHardwareCheck_Click);
             // 
             // MenuItemResetTapDevice
             // 
             this.MenuItemResetTapDevice.Name = "MenuItemResetTapDevice";
-            this.MenuItemResetTapDevice.Size = new System.Drawing.Size(152, 22);
+            this.MenuItemResetTapDevice.Size = new System.Drawing.Size(148, 22);
             this.MenuItemResetTapDevice.Text = "重置硬件设备";
             this.MenuItemResetTapDevice.Click += new System.EventHandler(this.MenuItemResetTapDevice_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
             // 
             // MenuItemHelp
             // 
@@ -260,18 +272,6 @@
             this.PicStat.Click += new System.EventHandler(this.PicStat_Click);
             this.PicStat.MouseEnter += new System.EventHandler(this.PicStat_MouseEnter);
             this.PicStat.MouseLeave += new System.EventHandler(this.PicStat_MouseLeave);
-            // 
-            // MenuItemChooseFastest
-            // 
-            this.MenuItemChooseFastest.Name = "MenuItemChooseFastest";
-            this.MenuItemChooseFastest.Size = new System.Drawing.Size(160, 22);
-            this.MenuItemChooseFastest.Text = "选择最快服务器";
-            this.MenuItemChooseFastest.Click += new System.EventHandler(this.MenuItemChooseFastest_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(157, 6);
             // 
             // EntryWindow
             // 

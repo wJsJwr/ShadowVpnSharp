@@ -52,9 +52,10 @@
             this.ControlBox = false;
             this.Controls.Add(this.lbProgress);
             this.Controls.Add(this.progressBar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ServerAvailabilityTest";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "挑选最优服务器";
+            this.Text = "挑选最优路线";
             this.Load += new System.EventHandler(this.ServerAvailabilityTest_Load);
             this.ResumeLayout(false);
 
