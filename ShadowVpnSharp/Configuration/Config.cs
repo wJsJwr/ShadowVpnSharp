@@ -12,6 +12,8 @@ namespace ShadowVpnSharp.Configuration {
     public class Config {
         public bool UseChnRoute;
         public string TapIntfaceName;
+        public bool AutoChooseFastestServer = false;
+        public bool AutoUpdate = true;
 
         public Profile CurrentProfile => string.IsNullOrEmpty(CurrentProfileName) ? null : Profiles[CurrentProfileName];
 
@@ -23,6 +25,8 @@ namespace ShadowVpnSharp.Configuration {
             UseChnRoute = false; //TODO: ADD CHNRoute Support
             TapIntfaceName = o.TapIntfaceName;
             CurrentProfileName = o.CurrentProfileName;
+            AutoUpdate = o.AutoUpdate;
+            AutoChooseFastestServer = o.AutoChooseFastestServer;
             Profiles = new Dictionary<string, Profile>();
             if(o.Profiles != null) {
                 foreach (var profileJsonObject in o.Profiles) {
@@ -109,6 +113,8 @@ namespace ShadowVpnSharp.Configuration {
                 UseChnRoute = UseChnRoute,
                 TapIntfaceName = TapIntfaceName,
                 CurrentProfileName = CurrentProfileName,
+                AutoChooseFastestServer = AutoChooseFastestServer,
+                AutoUpdate = AutoUpdate,
                 Profiles = new Dictionary<string, Profile.ProfileJsonObject>()
             };
             foreach (var profile in Profiles) {
@@ -142,6 +148,8 @@ namespace ShadowVpnSharp.Configuration {
             public string TapIntfaceName = null;
             public Dictionary<string, Profile.ProfileJsonObject> Profiles;
             public string CurrentProfileName;
+            public bool AutoChooseFastestServer = false;
+            public bool AutoUpdate = true;
         }
 
 

@@ -55,7 +55,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "ServerAvailabilityTest";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "挑选最优路线";
+            this.Text = "挑选最优线路";
             this.Load += new System.EventHandler(this.ServerAvailabilityTest_Load);
             this.ResumeLayout(false);
 

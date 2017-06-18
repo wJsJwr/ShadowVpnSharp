@@ -90,7 +90,8 @@ namespace ShadowVpnSharp.View {
             Text = $"ShadowVpnSharp {v.Major}.{v.Minor}.{v.Build}";
 
             DisplayConfig();
-            BackgroundChecker();
+            if (Program.UserConfig.AutoUpdate) BackgroundChecker();
+            if (Program.UserConfig.AutoChooseFastestServer) new ServerAvailabilityTest(this).ShowDialog(this);
         }
 
 
@@ -297,6 +298,10 @@ namespace ShadowVpnSharp.View {
 
         private void MenuItemChooseFastest_Click(object sender, EventArgs e) {
             new ServerAvailabilityTest(this).ShowDialog(this);
+        }
+
+        private void MenuItemSettings_Click(object sender, EventArgs e) {
+            new Settings().ShowDialog(this);
         }
     }
 }

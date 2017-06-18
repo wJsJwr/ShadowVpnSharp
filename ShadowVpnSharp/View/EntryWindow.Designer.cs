@@ -50,6 +50,7 @@
             this.lbCurrentProfileName = new System.Windows.Forms.Label();
             this.bVpnSwitch = new System.Windows.Forms.Button();
             this.StatTimer = new System.Windows.Forms.Timer(this.components);
+            this.MenuItemSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.PicStat = new System.Windows.Forms.PictureBox();
             this.EntryWindowMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PicStat)).BeginInit();
@@ -157,7 +158,8 @@
             this.MenuItemTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuItemChooseFastest,
             this.MenuItemSystemTools,
-            this.toolStripMenuItem2});
+            this.toolStripMenuItem2,
+            this.MenuItemSettings});
             this.MenuItemTools.Name = "MenuItemTools";
             this.MenuItemTools.Size = new System.Drawing.Size(44, 21);
             this.MenuItemTools.Text = "工具";
@@ -166,7 +168,7 @@
             // 
             this.MenuItemChooseFastest.Name = "MenuItemChooseFastest";
             this.MenuItemChooseFastest.Size = new System.Drawing.Size(152, 22);
-            this.MenuItemChooseFastest.Text = "选择最优路线";
+            this.MenuItemChooseFastest.Text = "选择最优线路";
             this.MenuItemChooseFastest.Click += new System.EventHandler(this.MenuItemChooseFastest_Click);
             // 
             // MenuItemSystemTools
@@ -260,6 +262,13 @@
             this.StatTimer.Interval = 1000;
             this.StatTimer.Tick += new System.EventHandler(this.StatTimer_Tick);
             // 
+            // MenuItemSettings
+            // 
+            this.MenuItemSettings.Name = "MenuItemSettings";
+            this.MenuItemSettings.Size = new System.Drawing.Size(152, 22);
+            this.MenuItemSettings.Text = "系统设置";
+            this.MenuItemSettings.Click += new System.EventHandler(this.MenuItemSettings_Click);
+            // 
             // PicStat
             // 
             this.PicStat.BackColor = System.Drawing.Color.DodgerBlue;
@@ -328,5 +337,6 @@
         private System.Windows.Forms.ToolStripMenuItem MenuItemImportFromUri;
         private System.Windows.Forms.ToolStripMenuItem MenuItemChooseFastest;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem MenuItemSettings;
     }
 }

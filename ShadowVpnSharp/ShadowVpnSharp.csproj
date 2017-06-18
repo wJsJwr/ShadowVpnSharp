@@ -21,7 +21,7 @@
     <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
     <AssemblyVersionSettings>None.IncrementOnDemandWithReset.Increment.DateStamp</AssemblyVersionSettings>
     <AssemblyFileVersionSettings>None.IncrementOnDemandWithReset.Increment.DateStamp</AssemblyFileVersionSettings>
-    <AssemblyVersion>1.1.6.17169</AssemblyVersion>
+    <AssemblyVersion>1.2.0.17169</AssemblyVersion>
     <AssemblyInfoVersionSettings>None.IncrementOnDemandWithReset.Increment.DateStamp</AssemblyInfoVersionSettings>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -157,6 +157,12 @@
     <Compile Include="View\ServerAvailabilityTest.Designer.cs">
       <DependentUpon>ServerAvailabilityTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\TapChecker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\ServerAvailabilityTest.resx">
       <DependentUpon>ServerAvailabilityTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\TapChecker.resx">
       <DependentUpon>TapChecker.cs</DependentUpon>
